@@ -1,8 +1,9 @@
 import { BoardTitle, Task } from '../index';
+import { BiPlus } from 'react-icons/bi';
 
 function TodoBoard() {
   return (
-    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FEF4F3]">
+    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FEF4F3] overflow-y-auto overflow-x-hidden">
       {/* Title */}
       <BoardTitle
         title={'Todo'}
@@ -23,10 +24,17 @@ function TodoBoard() {
           text={'Read to learn something new every day'}
           borderColor={'#F3E1DF'}
         />
+
         <Task
           text={'Learn something fresh & relevant'}
           borderColor={'#F3E1DF'}
         />
+
+        {/* New Button */}
+        <button className="flex items-center p-[8px] pl-[6px] gap-[6px] w-full">
+          <BiPlus className="text-[#d66979] w-5 h-5" />
+          <span className="text-[13px] font-semibold text-[#D37A87]">New</span>
+        </button>
       </div>
     </div>
   );
