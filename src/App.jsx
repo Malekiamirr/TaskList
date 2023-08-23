@@ -45,6 +45,7 @@ function App() {
         <DoingBoard data={data.doing} />
         <DoneBoard data={data.done} />
       </div>
+      <div></div>
     </div>
   );
 }

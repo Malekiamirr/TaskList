@@ -1,8 +1,7 @@
 import { IoClose } from 'react-icons/io5';
-import Checkbox from '../Checkbox';
-import { useState } from 'react';
 
-function Task({
+// eslint-disable-next-line react/prop-types
+export function Task({
   borderColor,
   closeButtonColor,
   text,
@@ -10,18 +9,15 @@ function Task({
   removeTask,
   complete,
 }) {
-  const [isChecked, setIsChecked] = useState(complete ? true : false);
-
   return (
     <div
       style={{ border: `1px solid ${borderColor}` }}
       className="w-[300px] rounded pt-[10px] pb-[7px] px-[10px] bg-white flex items-center gap-2 group"
     >
       <div className="w-4 h-4 flex items-center">
-        <Checkbox
-          isChecked={isChecked}
-          onChange={(checked) => setIsChecked(checked)}
-          borderColor={closeButtonColor}
+        <input
+          type="checkbox"
+          className="w-4 h-4 flex items-center justify-center"
         />
       </div>
 
@@ -44,5 +40,3 @@ function Task({
     </div>
   );
 }
-
-export default Task;
