@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';
 
@@ -6,20 +6,45 @@ import { BiPlus } from 'react-icons/bi';
 function TodoBoard({ data }) {
   const [tasks, setTasks] = useState(data);
   const [showTaskInput, setShowTaskInput] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [newTask, setNewTask] = useState('');
+
+  const inputRef = useRef(null);
 
   const handleRemoveTask = (id) => {
     const filteredTasks = tasks.filter((task) => task.id !== id);
     setTasks(filteredTasks);
   };
 
-  const toggleShowTaskInput = () => {
-    setShowTaskInput((prev) => !prev);
+  const handleBlur = () => {
+    if (newTask.trim() !== '') {
+      // Add the non-empty new task to the tasks list
+      const newTaskObj = {
+        id: tasks.length + 1,
+        task: newTask,
+      };
+      setTasks([...tasks, newTaskObj]);
+      setNewTask(''); // Clear the input field
+    }
+    setShowTaskInput(false); // Show the input field on focus
   };
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && newTask.trim() !== '') {
+      const newTaskObj = {
+        id: tasks.length + 1,
+        task: newTask,
+      };
+      setTasks([...tasks, newTaskObj]);
+      setNewTask(''); // Clear the input field
+      setShowTaskInput(false); // Hide the input field
+    }
   };
+
+  useEffect(() => {
+    if (showTaskInput && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [showTaskInput]);
 
   return (
     <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FEF4F3] overflow-y-auto overflow-x-hidden">
@@ -43,9 +68,24 @@ function TodoBoard({ data }) {
           />
         ))}
 
+        {showTaskInput && (
+          <input
+            type="text"
+            placeholder="Add a new task"
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            onKeyPress={handleKeyPress}
+            onBlur={handleBlur}
+            ref={inputRef}
+            className="w-full p-2 border rounded focus:outline-none focus:border-[#F3E1DF] text-xs font-semibold leading-[14.52px]"
+          />
+        )}
+
         {/* New Button */}
         <button
-          onClick={toggleShowTaskInput}
+          onClick={() => {
+            setShowTaskInput(true);
+          }}
           className="flex items-center p-[8px] pl-[6px] gap-[6px] w-full"
         >
           <BiPlus className="text-[#d66979] w-5 h-5" />
