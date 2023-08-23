@@ -1,7 +1,7 @@
 import { IoClose } from 'react-icons/io5';
 
 // eslint-disable-next-line react/prop-types
-function Task({ borderColor, text }) {
+function Task({ borderColor, text, id, removeTask }) {
   return (
     <div
       style={{ border: `1px solid ${borderColor}` }}
@@ -19,7 +19,12 @@ function Task({ borderColor, text }) {
       </p>
 
       {/* remove button */}
-      <IoClose className="w-5 h-5 font-bold text-[#F4C5CB] group-hover:opacity-100 group-hover:z-auto hover:cursor-pointer opacity-0 transition-opacity duration-300 -z-50" />
+      <IoClose
+        onClick={() => {
+          removeTask(id);
+        }}
+        className="w-5 h-5 font-bold text-[#F4C5CB] group-hover:opacity-100 group-hover:z-auto hover:cursor-pointer opacity-0 transition-opacity duration-300 -z-50"
+      />
     </div>
   );
 }
