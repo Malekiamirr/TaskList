@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { BoardTitle, Task } from '../index';
+import initialData from '../../Data/initial-data';
 
 // eslint-disable-next-line react/prop-types
-function DoneBoard({ data }) {
-  const [tasks, setTasks] = useState(data);
+function DoneBoard() {
+  const [tasks, setTasks] = useState(initialData.done);
 
   const handleRemoveTask = (id) => {
     const filteredTasks = tasks.filter((task) => task.id !== id);

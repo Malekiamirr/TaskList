@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';
+import initialData from '../../Data/initial-data';
 
 // eslint-disable-next-line react/prop-types
-function TodoBoard({ data }) {
-  const [tasks, setTasks] = useState(data);
+function TodoBoard() {
+  const [tasks, setTasks] = useState(initialData.todo);
   const [showTaskInput, setShowTaskInput] = useState(false);
   const [newTask, setNewTask] = useState('');
 

@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';
-
+import initialData from '../../Data/initial-data';
 // eslint-disable-next-line react/prop-types
-function DoingBoard({ data }) {
-  const [tasks, setTasks] = useState(data);
+function DoingBoard() {
+  const [tasks, setTasks] = useState(initialData.doing);
   const [showTaskInput, setShowTaskInput] = useState(false);
   const [newTask, setNewTask] = useState('');
 
