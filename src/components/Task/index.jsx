@@ -1,7 +1,14 @@
 import { IoClose } from 'react-icons/io5';
 
 // eslint-disable-next-line react/prop-types
-function Task({ borderColor, closeButtonColor, text, id, removeTask }) {
+function Task({
+  borderColor,
+  closeButtonColor,
+  text,
+  id,
+  removeTask,
+  complete,
+}) {
   return (
     <div
       style={{ border: `1px solid ${borderColor}` }}
@@ -14,7 +21,11 @@ function Task({ borderColor, closeButtonColor, text, id, removeTask }) {
         />
       </div>
 
-      <p className="text-xs font-semibold leading-[14.52px] w-full break-all">
+      <p
+        className={`text-xs font-semibold leading-[14.52px] w-full break-all ${
+          complete && 'line-through'
+        }`}
+      >
         {text}
       </p>
 
