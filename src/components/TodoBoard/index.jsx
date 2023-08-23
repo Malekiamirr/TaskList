@@ -28,7 +28,7 @@ function TodoBoard({ data }) {
     setShowTaskInput(false); // Show the input field on focus
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     if (e.key === 'Enter' && newTask.trim() !== '') {
       const newTaskObj = {
         id: tasks.length + 1,
@@ -74,7 +74,7 @@ function TodoBoard({ data }) {
             placeholder="Add a new task"
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             onBlur={handleBlur}
             ref={inputRef}
             className="w-full p-2 border rounded focus:outline-none focus:border-[#F3E1DF] text-xs font-semibold leading-[14.52px]"
