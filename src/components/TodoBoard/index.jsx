@@ -20,7 +20,7 @@ function TodoBoard() {
     if (newTask.trim() !== '') {
       // Add the non-empty new task to the tasks list
       const newTaskObj = {
-        id: `todo-task-${tasks.length + 1}`,
+        id: tasks.length + 1,
         task: newTask,
       };
       setTasks([...tasks, newTaskObj]);
@@ -32,7 +32,7 @@ function TodoBoard() {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && newTask.trim() !== '') {
       const newTaskObj = {
-        id: `todo-task-${tasks.length + 1}`,
+        id: tasks.length + 1,
         task: newTask,
       };
       setTasks([...tasks, newTaskObj]);
@@ -41,11 +41,27 @@ function TodoBoard() {
     }
   };
 
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const pastedText = e.clipboardData.getData('text');
+    // Split the pasted text into tasks based on line breaks
+    const sentences = pastedText.split('\n').map((sentence) => sentence.trim());
+    const validSentences = sentences.filter((sentence) => sentence !== ''); // Remove empty lines
+    if (validSentences.length > 0) {
+      const newTasks = validSentences.map((sentence, index) => ({
+        id: `doing-task-${tasks.length + index + 1}`,
+        task: sentence,
+      }));
+      setTasks([...tasks, ...newTasks]);
+    }
+  };
+
   useEffect(() => {
     if (showTaskInput && inputRef.current) {
       inputRef.current.focus();
     }
   }, [showTaskInput]);
+
   return (
     <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FEF4F3] overflow-y-auto overflow-x-hidden">
       {/* Title */}
@@ -57,7 +73,6 @@ function TodoBoard() {
       />
 
       {/* Tasks List */}
-
       <div className="flex flex-col mt-5 gap-3">
         {tasks.map((task) => (
           <Task
@@ -78,6 +93,7 @@ function TodoBoard() {
             onChange={(e) => setNewTask(e.target.value)}
             onKeyDown={handleKeyDown}
             onBlur={handleBlur}
+            onPaste={handlePaste}
             ref={inputRef}
             className="w-full p-2 border rounded focus:outline-none focus:border-[#F3E1DF] text-xs font-semibold leading-[14.52px]"
           />
@@ -88,7 +104,7 @@ function TodoBoard() {
           onClick={() => {
             setShowTaskInput(true);
           }}
-          className="flex items-center p-[8px] pl-[6px] gap-[6px] w-min"
+          className="flex items-center p-[8px] pl-[6px] gap-[6px] w-full"
         >
           <BiPlus className="text-[#d66979] w-5 h-5" />
           <span className="text-[13px] font-semibold text-[#D37A87]">New</span>

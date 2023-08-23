@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';
 import initialData from '../../Data/initial-data';
@@ -87,7 +87,7 @@ function DoingBoard() {
             onChange={(e) => setNewTask(e.target.value)}
             onKeyDown={handleKeyDown}
             onBlur={handleBlur}
-            onPaste={handlePaste} // Handle paste event
+            onPaste={handlePaste}
             ref={inputRef}
             className="w-full p-2 border rounded focus:outline-none focus:border-[#EAE2CF] text-xs font-semibold leading-[14.52px]"
           />
