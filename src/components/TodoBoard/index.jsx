@@ -20,7 +20,7 @@ function TodoBoard() {
     if (newTask.trim() !== '') {
       // Add the non-empty new task to the tasks list
       const newTaskObj = {
-        id: tasks.length + 1,
+        id: `todo-task-${tasks.length + 1}`,
         task: newTask,
       };
       setTasks([...tasks, newTaskObj]);
@@ -32,7 +32,7 @@ function TodoBoard() {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && newTask.trim() !== '') {
       const newTaskObj = {
-        id: tasks.length + 1,
+        id: `todo-task-${tasks.length + 1}`,
         task: newTask,
       };
       setTasks([...tasks, newTaskObj]);
@@ -46,7 +46,6 @@ function TodoBoard() {
       inputRef.current.focus();
     }
   }, [showTaskInput]);
-
   return (
     <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FEF4F3] overflow-y-auto overflow-x-hidden">
       {/* Title */}
@@ -58,6 +57,7 @@ function TodoBoard() {
       />
 
       {/* Tasks List */}
+
       <div className="flex flex-col mt-5 gap-3">
         {tasks.map((task) => (
           <Task
@@ -88,7 +88,7 @@ function TodoBoard() {
           onClick={() => {
             setShowTaskInput(true);
           }}
-          className="flex items-center p-[8px] pl-[6px] gap-[6px] w-full"
+          className="flex items-center p-[8px] pl-[6px] gap-[6px] w-min"
         >
           <BiPlus className="text-[#d66979] w-5 h-5" />
           <span className="text-[13px] font-semibold text-[#D37A87]">New</span>

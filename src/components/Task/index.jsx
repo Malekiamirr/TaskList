@@ -2,6 +2,7 @@ import { IoClose } from 'react-icons/io5';
 import Checkbox from '../Checkbox';
 import { useState } from 'react';
 
+/* eslint-disable react/prop-types */
 function Task({
   borderColor,
   closeButtonColor,

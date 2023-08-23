@@ -9,7 +9,6 @@ function App() {
         <DoingBoard />
         <DoneBoard />
       </div>
-      <div></div>
     </div>
   );
 }

@@ -1,35 +1,35 @@
 const initialData = {
   todo: [
     {
-      id: 1,
+      id: 'todo-task-1',
       task: 'Start with meditation, exercise & breakfast for a productive day',
     },
     {
-      id: 2,
+      id: 'todo-task-2',
       task: 'Read to learn something new every day',
     },
     {
-      id: 3,
+      id: 'todo-task-3',
       task: 'Learn something fresh & relevant',
     },
   ],
   doing: [
     {
-      id: 1,
+      id: 'doing-task-1',
       task: 'Engage & question in meetings',
     },
     {
-      id: 2,
+      id: 'doing-task-2',
       task: 'Use time-blocking for effective days',
     },
   ],
   done: [
     {
-      id: 1,
+      id: 'done-task-1',
       task: 'Finished online course - check!',
     },
     {
-      id: 2,
+      id: 'done-task-2',
       task: 'Congratulate yourself for incorporating healthier habits into your lifestyle, like regular exercise or mindful eating',
     },
   ],

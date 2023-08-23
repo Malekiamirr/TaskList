@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { BoardTitle, Task } from '../index';
 import initialData from '../../Data/initial-data';
 
-// eslint-disable-next-line react/prop-types
 function DoneBoard() {
   const [tasks, setTasks] = useState(initialData.done);
 
@@ -12,7 +11,7 @@ function DoneBoard() {
   };
 
   return (
-    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#F4F9F3] overflow-y-auto overflow-x-hidden">
+    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#F4F9F3]">
       {/* Title */}
       <BoardTitle
         title={'Done 🎉'}
