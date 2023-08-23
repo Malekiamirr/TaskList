@@ -63,6 +63,7 @@ function TodoBoard({ data }) {
             key={task.id}
             text={task.task}
             borderColor={'#F3E1DF'}
+            closeButtonColor={'#F4C5CB'}
             id={task.id}
             removeTask={handleRemoveTask}
           />

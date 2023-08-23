@@ -1,4 +1,4 @@
-import { TodoBoard, Header } from './components';
+import { TodoBoard, Header, DoingBoard } from './components';
 
 function App() {
   const data = {
@@ -42,6 +42,7 @@ function App() {
       <Header />
       <div className="flex justify-between mt-[46px]">
         <TodoBoard data={data.todo} />
+        <DoingBoard data={data.doing} />
       </div>
     </div>
   );
