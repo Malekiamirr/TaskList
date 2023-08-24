@@ -1,15 +1,7 @@
-import { useState } from 'react';
 import { BoardTitle, Task } from '../index';
-import initialData from '../../Data/initial-data';
 
-function DoneBoard() {
-  const [tasks, setTasks] = useState(initialData.done);
-
-  const handleRemoveTask = (id) => {
-    const filteredTasks = tasks.filter((task) => task.id !== id);
-    setTasks(filteredTasks);
-  };
-
+// eslint-disable-next-line react/prop-types
+function DoneBoard({ tasks, moveTask, removeTask }) {
   return (
     <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#F4F9F3]">
       {/* Title */}
@@ -29,7 +21,11 @@ function DoneBoard() {
             borderColor={'#DDEED9'}
             closeButtonColor={'#BCD7B6'}
             id={task.id}
-            removeTask={handleRemoveTask}
+            removeTask={removeTask}
+            sourceBoard={tasks}
+            moveTask={moveTask}
+            destination="todo"
+            de
             complete
           />
         ))}

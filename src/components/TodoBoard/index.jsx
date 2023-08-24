@@ -1,26 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';
-import initialData from '../../Data/initial-data';
 
 // eslint-disable-next-line react/prop-types
-function TodoBoard() {
-  const [tasks, setTasks] = useState(initialData.todo);
+function TodoBoard({ tasks, setTasks, moveTask, removeTask }) {
   const [showTaskInput, setShowTaskInput] = useState(false);
   const [newTask, setNewTask] = useState('');
 
   const inputRef = useRef(null);
 
-  const handleRemoveTask = (id) => {
-    const filteredTasks = tasks.filter((task) => task.id !== id);
-    setTasks(filteredTasks);
-  };
-
   const handleBlur = () => {
     if (newTask.trim() !== '') {
       // Add the non-empty new task to the tasks list
       const newTaskObj = {
-        id: tasks.length + 1,
+        id: `todo-task-${tasks.length + 1}`,
         task: newTask,
       };
       setTasks([...tasks, newTaskObj]);
@@ -32,7 +25,7 @@ function TodoBoard() {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && newTask.trim() !== '') {
       const newTaskObj = {
-        id: tasks.length + 1,
+        id: `todo-task-${tasks.length + 1}`,
         task: newTask,
       };
       setTasks([...tasks, newTaskObj]);
@@ -81,7 +74,10 @@ function TodoBoard() {
             borderColor={'#F3E1DF'}
             closeButtonColor={'#F4C5CB'}
             id={task.id}
-            removeTask={handleRemoveTask}
+            removeTask={removeTask}
+            sourceBoard={tasks}
+            moveTask={moveTask}
+            destination="done"
           />
         ))}
 

@@ -1,19 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';
-import initialData from '../../Data/initial-data';
-
-function DoingBoard() {
-  const [tasks, setTasks] = useState(initialData.doing);
+// eslint-disable-next-line react/prop-types
+function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
   const [showTaskInput, setShowTaskInput] = useState(false);
   const [newTask, setNewTask] = useState('');
 
   const inputRef = useRef(null);
-
-  const handleRemoveTask = (id) => {
-    const filteredTasks = tasks.filter((task) => task.id !== id);
-    setTasks(filteredTasks);
-  };
 
   const handleBlur = () => {
     if (newTask.trim() !== '') {
@@ -68,7 +61,7 @@ function DoingBoard() {
         taskColor={'text-[#DECCA4]'}
         taskCount={tasks.length}
       />
-      <div className="flex flex-col mt-5 gap-3">
+      <div className="flex flex-col gap-3 mt-5">
         {tasks.map((task) => (
           <Task
             key={task.id}
@@ -76,7 +69,10 @@ function DoingBoard() {
             borderColor={'#EAE2CF'}
             closeButtonColor={'#DECCA4'}
             id={task.id}
-            removeTask={handleRemoveTask}
+            removeTask={removeTask}
+            sourceBoard={tasks}
+            moveTask={moveTask}
+            destination="done"
           />
         ))}
         {showTaskInput && (
