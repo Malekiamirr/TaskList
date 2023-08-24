@@ -16,10 +16,10 @@ function TodoBoard({ tasks, setTasks, moveTask, removeTask }) {
         id: `todo-task-${tasks.length + 1}`,
         task: newTask,
       };
-      setTasks([...tasks, newTaskObj]);
+      setTasks([...tasks, newTaskObj]); // Update the state with the new task
       setNewTask(''); // Clear the input field
     }
-    setShowTaskInput(false); // Show the input field on focus
+    setShowTaskInput(false); // Hide the input field
   };
 
   const handleKeyDown = (e) => {
@@ -28,7 +28,7 @@ function TodoBoard({ tasks, setTasks, moveTask, removeTask }) {
         id: `todo-task-${tasks.length + 1}`,
         task: newTask,
       };
-      setTasks([...tasks, newTaskObj]);
+      setTasks([...tasks, newTaskObj]); // Update the state with the new task
       setNewTask(''); // Clear the input field
       setShowTaskInput(false); // Hide the input field
     }

@@ -10,25 +10,26 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
 
   const handleBlur = () => {
     if (newTask.trim() !== '') {
+      // Add the non-empty new task to the tasks list
       const newTaskObj = {
-        id: `doing-task-${tasks.length + 1}`,
+        id: `todo-task-${tasks.length + 1}`,
         task: newTask,
       };
-      setTasks([...tasks, newTaskObj]);
-      setNewTask('');
+      setTasks([...tasks, newTaskObj]); // Update the state with the new task
+      setNewTask(''); // Clear the input field
     }
-    setShowTaskInput(false);
+    setShowTaskInput(false); // Hide the input field
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && newTask.trim() !== '') {
       const newTaskObj = {
-        id: `doing-task-${tasks.length + 1}`,
+        id: `todo-task-${tasks.length + 1}`,
         task: newTask,
       };
-      setTasks([...tasks, newTaskObj]);
-      setNewTask('');
-      setShowTaskInput(false);
+      setTasks([...tasks, newTaskObj]); // Update the state with the new task
+      setNewTask(''); // Clear the input field
+      setShowTaskInput(false); // Hide the input field
     }
   };
 
