@@ -1,10 +1,22 @@
 import { TodoBoard, Header, DoingBoard, DoneBoard } from './components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import initialData from './Data/initial-data';
 function App() {
-  const [todo, setTodo] = useState(initialData.todo);
-  const [doing, setDoing] = useState(initialData.doing);
-  const [done, setDone] = useState(initialData.done);
+  const [todo, setTodo] = useState(() => {
+    // Load the todo data from localStorage, or use the initialData if it doesn't exist
+    const savedTodo = localStorage.getItem('todo');
+    return savedTodo ? JSON.parse(savedTodo) : initialData.todo;
+  });
+
+  const [doing, setDoing] = useState(() => {
+    const savedDoing = localStorage.getItem('doing');
+    return savedDoing ? JSON.parse(savedDoing) : initialData.doing;
+  });
+
+  const [done, setDone] = useState(() => {
+    const savedDone = localStorage.getItem('done');
+    return savedDone ? JSON.parse(savedDone) : initialData.done;
+  });
 
   // Function to move a task from one board to another
   const moveTask = (taskId, sourceBoard, destination) => {
@@ -43,6 +55,11 @@ function App() {
       default:
         break;
     }
+
+    // After moving the task, update localStorage
+    localStorage.setItem('todo', JSON.stringify(todo));
+    localStorage.setItem('doing', JSON.stringify(doing));
+    localStorage.setItem('done', JSON.stringify(done));
   };
 
   const removeTask = (id, sourceBoard) => {
@@ -63,7 +80,19 @@ function App() {
       default:
         break;
     }
+
+    // After removing the task, update localStorage
+    localStorage.setItem('todo', JSON.stringify(todo));
+    localStorage.setItem('doing', JSON.stringify(doing));
+    localStorage.setItem('done', JSON.stringify(done));
   };
+
+  useEffect(() => {
+    // Save the tasks to localStorage whenever they change
+    localStorage.setItem('todo', JSON.stringify(todo));
+    localStorage.setItem('doing', JSON.stringify(doing));
+    localStorage.setItem('done', JSON.stringify(done));
+  }, [todo, doing, done]);
 
   return (
     <div className="w-[1060px] h-[862px] mt-[70px] mx-auto">
