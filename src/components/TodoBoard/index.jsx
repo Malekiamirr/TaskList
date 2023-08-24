@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';

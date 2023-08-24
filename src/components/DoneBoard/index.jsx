@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { BoardTitle, Task } from '../index';
 
 // eslint-disable-next-line react/prop-types
