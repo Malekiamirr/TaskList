@@ -7,3 +7,24 @@
 body {
   @apply font-inter text-text-color;
 }
+
+.custom-scrollbar {
+  scrollbar-width: 2px; /* For Firefox */
+  scrollbar-color: rgba(220, 220, 220, 0.6) transparent; /* Scrollbar color (track and thumb) */
+}
+
+/* For Webkit browsers (e.g., Chrome, Safari) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+/* For Webkit browsers (e.g., Chrome, Safari) */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Track color */
+}
+
+/* For Webkit browsers (e.g., Chrome, Safari) */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(220, 220, 220, 0.6); /* Thumb color */
+  border-radius: 10px;
+}

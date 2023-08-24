@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';
+import generateUniqueId from '../../utils/generateUniqueId';
 // eslint-disable-next-line react/prop-types
 function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
   const [showTaskInput, setShowTaskInput] = useState(false);
@@ -12,7 +13,7 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
     if (newTask.trim() !== '') {
       // Add the non-empty new task to the tasks list
       const newTaskObj = {
-        id: `todo-task-${tasks.length + 1}`,
+        id: `todo-task-${generateUniqueId()}`,
         task: newTask,
       };
       setTasks([...tasks, newTaskObj]); // Update the state with the new task
@@ -24,7 +25,7 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && newTask.trim() !== '') {
       const newTaskObj = {
-        id: `todo-task-${tasks.length + 1}`,
+        id: `todo-task-${generateUniqueId()}`,
         task: newTask,
       };
       setTasks([...tasks, newTaskObj]); // Update the state with the new task
@@ -55,7 +56,7 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
   }, [showTaskInput]);
 
   return (
-    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FFFBF2] overflow-y-auto overflow-x-hidden">
+    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FFFBF2] overflow-y-auto overflow-x-hidden custom-scrollbar">
       <BoardTitle
         title={'Doing 💪'}
         titleColor={'text-[#795B19]'}
