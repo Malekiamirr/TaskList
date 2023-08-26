@@ -8,6 +8,11 @@ body {
   @apply font-inter text-text-color;
 }
 
+.doing-shadow:hover {
+  box-shadow: rgba(121, 91, 25, 0.05) 0px 6px 24px 0px,
+    rgba(121, 91, 25, 0.08) 0px 0px 0px 1px;
+}
+
 .custom-scrollbar {
   scrollbar-width: 2px; /* For Firefox */
   scrollbar-color: rgba(220, 220, 220, 0.6) transparent; /* Scrollbar color (track and thumb) */

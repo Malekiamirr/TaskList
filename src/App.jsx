@@ -1,6 +1,9 @@
 import { TodoBoard, Header, DoingBoard, DoneBoard } from './components';
 import { useEffect, useState } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import initialData from './Data/initial-data';
+
 function App() {
   const [todo, setTodo] = useState(() => {
     // Load the todo data from localStorage, or use the initialData if it doesn't exist
@@ -97,21 +100,23 @@ function App() {
   return (
     <div className="w-[1060px] h-[862px] mt-[70px] mx-auto">
       <Header />
-      <div className="flex justify-between mt-[46px]">
-        <TodoBoard
-          tasks={todo}
-          setTasks={setTodo}
-          moveTask={moveTask}
-          removeTask={removeTask}
-        />
-        <DoingBoard
-          tasks={doing}
-          setTasks={setDoing}
-          moveTask={moveTask}
-          removeTask={removeTask}
-        />
-        <DoneBoard tasks={done} moveTask={moveTask} removeTask={removeTask} />
-      </div>
+      <DndProvider backend={HTML5Backend}>
+        <div className="flex justify-between mt-[46px]">
+          <TodoBoard
+            tasks={todo}
+            setTasks={setTodo}
+            moveTask={moveTask}
+            removeTask={removeTask}
+          />
+          <DoingBoard
+            tasks={doing}
+            setTasks={setDoing}
+            moveTask={moveTask}
+            removeTask={removeTask}
+          />
+          <DoneBoard tasks={done} moveTask={moveTask} removeTask={removeTask} />
+        </div>
+      </DndProvider>
     </div>
   );
 }

@@ -60,6 +60,7 @@ function Task({
       handleTextBlur(); // Stop editing
     }
   };
+
   if (editedText) {
     return (
       <div

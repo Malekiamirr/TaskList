@@ -58,7 +58,7 @@ function TodoBoard({ tasks, setTasks, moveTask, removeTask }) {
   }, [showTaskInput]);
 
   return (
-    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FEF4F3] overflow-y-auto overflow-x-hidden custom-scrollbar">
+    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FEF4F3] overflow-y-auto overflow-x-hidden custom-scrollbar hover:shadow-todo-shadow hover:-translate-y-1 duration-300 transition-all">
       {/* Title */}
       <BoardTitle
         title={'Todo'}

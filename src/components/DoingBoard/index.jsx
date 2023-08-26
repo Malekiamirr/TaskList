@@ -57,7 +57,7 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
   }, [showTaskInput]);
 
   return (
-    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FFFBF2] overflow-y-auto overflow-x-hidden custom-scrollbar">
+    <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FFFBF2] overflow-y-auto overflow-x-hidden custom-scrollbar hover:-translate-y-1 transition-all duration-300 hover:shadow-doing-shadow">
       <BoardTitle
         title={'Doing 💪'}
         titleColor={'text-[#795B19]'}
