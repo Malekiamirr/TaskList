@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';
 import generateUniqueId from '../../utils/generateUniqueId';
@@ -10,7 +10,7 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
 
   const inputRef = useRef(null);
 
-  const handleBlur = () => {
+  const addNewTask = () => {
     if (newTask.trim() !== '') {
       // Add the non-empty new task to the tasks list
       const newTaskObj = {
@@ -23,15 +23,13 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
     setShowTaskInput(false); // Hide the input field
   };
 
+  const handleBlur = () => {
+    addNewTask();
+  };
+
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && newTask.trim() !== '') {
-      const newTaskObj = {
-        id: `todo-task-${generateUniqueId()}`,
-        task: newTask,
-      };
-      setTasks([...tasks, newTaskObj]); // Update the state with the new task
-      setNewTask(''); // Clear the input field
-      setShowTaskInput(false); // Hide the input field
+    if (e.key === 'Enter') {
+      addNewTask();
     }
   };
 
@@ -55,6 +53,8 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
       inputRef.current.focus();
     }
   }, [showTaskInput]);
+
+  console.log('In Doing');
 
   return (
     <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FFFBF2] overflow-y-auto overflow-x-hidden custom-scrollbar hover:-translate-y-1 transition-all duration-300 hover:shadow-doing-shadow">
@@ -105,4 +105,8 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
   );
 }
 
-export default DoingBoard;
+// eslint-disable-next-line react-refresh/only-export-components
+export default React.memo(DoingBoard, (prevProps, nextProps) => {
+  // Compare the tasks array to determine whether a re-render is needed
+  return prevProps.tasks === nextProps.tasks;
+});

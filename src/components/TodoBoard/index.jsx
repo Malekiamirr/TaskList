@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BoardTitle, Task } from '../index';
 import { BiPlus } from 'react-icons/bi';
 import generateUniqueId from '../../utils/generateUniqueId';
@@ -11,7 +11,7 @@ function TodoBoard({ tasks, setTasks, moveTask, removeTask }) {
 
   const inputRef = useRef(null);
 
-  const handleBlur = () => {
+  const addNewTask = () => {
     if (newTask.trim() !== '') {
       // Add the non-empty new task to the tasks list
       const newTaskObj = {
@@ -24,15 +24,13 @@ function TodoBoard({ tasks, setTasks, moveTask, removeTask }) {
     setShowTaskInput(false); // Hide the input field
   };
 
+  const handleBlur = () => {
+    addNewTask();
+  };
+
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && newTask.trim() !== '') {
-      const newTaskObj = {
-        id: `todo-task-${generateUniqueId()}`,
-        task: newTask,
-      };
-      setTasks([...tasks, newTaskObj]); // Update the state with the new task
-      setNewTask(''); // Clear the input field
-      setShowTaskInput(false); // Hide the input field
+    if (e.key === 'Enter') {
+      addNewTask();
     }
   };
 
@@ -50,6 +48,8 @@ function TodoBoard({ tasks, setTasks, moveTask, removeTask }) {
       setTasks([...tasks, ...newTasks]);
     }
   };
+
+  console.log('In Todo');
 
   useEffect(() => {
     if (showTaskInput && inputRef.current) {
@@ -112,4 +112,7 @@ function TodoBoard({ tasks, setTasks, moveTask, removeTask }) {
   );
 }
 
-export default TodoBoard;
+export default React.memo(TodoBoard, (prevProps, nextProps) => {
+  // Compare the tasks array to determine whether a re-render is needed
+  return prevProps.tasks === nextProps.tasks;
+});
