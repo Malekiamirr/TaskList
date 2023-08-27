@@ -1,7 +1,5 @@
 import { TodoBoard, Header, DoingBoard, DoneBoard } from './components';
 import { useEffect, useState } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import initialData from './Data/initial-data';
 
 function App() {
