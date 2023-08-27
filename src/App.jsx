@@ -5,11 +5,12 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import initialData from './Data/initial-data';
 
 function App() {
-  console.log('In App');
   const [todo, setTodo] = useState(() => {
     // Load the todo data from localStorage, or use the initialData if it doesn't exist
     const savedTodo = localStorage.getItem('todo');
-    return savedTodo ? JSON.parse(savedTodo) : initialData.todo;
+    return savedTodo && savedTodo.length
+      ? JSON.parse(savedTodo)
+      : initialData.todo;
   });
 
   const [doing, setDoing] = useState(() => {

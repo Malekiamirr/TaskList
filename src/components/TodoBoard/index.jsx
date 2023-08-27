@@ -42,14 +42,12 @@ function TodoBoard({ tasks, setTasks, moveTask, removeTask }) {
     const validSentences = sentences.filter((sentence) => sentence !== ''); // Remove empty lines
     if (validSentences.length > 0) {
       const newTasks = validSentences.map((sentence, index) => ({
-        id: `doing-task-${tasks.length + index + 1}`,
+        id: `doing-task-${generateUniqueId()}`,
         task: sentence,
       }));
       setTasks([...tasks, ...newTasks]);
     }
   };
-
-  console.log('In Todo');
 
   useEffect(() => {
     if (showTaskInput && inputRef.current) {

@@ -41,7 +41,7 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
     const validSentences = sentences.filter((sentence) => sentence !== ''); // Remove empty lines
     if (validSentences.length > 0) {
       const newTasks = validSentences.map((sentence, index) => ({
-        id: `doing-task-${tasks.length + index + 1}`,
+        id: `doing-task-${generateUniqueId()}`,
         task: sentence,
       }));
       setTasks([...tasks, ...newTasks]);
@@ -53,8 +53,6 @@ function DoingBoard({ tasks, setTasks, moveTask, removeTask }) {
       inputRef.current.focus();
     }
   }, [showTaskInput]);
-
-  console.log('In Doing');
 
   return (
     <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#FFFBF2] overflow-y-auto overflow-x-hidden custom-scrollbar hover:-translate-y-1 transition-all duration-300 hover:shadow-doing-shadow">

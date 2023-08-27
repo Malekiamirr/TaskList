@@ -3,8 +3,6 @@ import { BoardTitle, Task } from '../index';
 import React from 'react';
 // eslint-disable-next-line react/prop-types
 function DoneBoard({ tasks, moveTask, removeTask }) {
-  console.log('In Done');
-
   return (
     <div className="w-[340px] h-[700px] rounded-[10px] p-5 pb-[30px] bg-[#F4F9F3] overflow-y-auto overflow-x-hidden custom-scrollbar hover:shadow-done-shadow hover:-translate-y-1 duration-300 transition-all">
       {/* Title */}
