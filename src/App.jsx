@@ -100,23 +100,21 @@ function App() {
   return (
     <div className="w-[1060px] h-[862px] mt-[70px] mx-auto">
       <Header />
-      <DndProvider backend={HTML5Backend}>
-        <div className="flex justify-between mt-[46px]">
-          <TodoBoard
-            tasks={todo}
-            setTasks={setTodo}
-            moveTask={moveTask}
-            removeTask={removeTask}
-          />
-          <DoingBoard
-            tasks={doing}
-            setTasks={setDoing}
-            moveTask={moveTask}
-            removeTask={removeTask}
-          />
-          <DoneBoard tasks={done} moveTask={moveTask} removeTask={removeTask} />
-        </div>
-      </DndProvider>
+      <div className="flex justify-between mt-[46px]">
+        <TodoBoard
+          tasks={todo}
+          setTasks={setTodo}
+          moveTask={moveTask}
+          removeTask={removeTask}
+        />
+        <DoingBoard
+          tasks={doing}
+          setTasks={setDoing}
+          moveTask={moveTask}
+          removeTask={removeTask}
+        />
+        <DoneBoard tasks={done} moveTask={moveTask} removeTask={removeTask} />
+      </div>
     </div>
   );
 }
